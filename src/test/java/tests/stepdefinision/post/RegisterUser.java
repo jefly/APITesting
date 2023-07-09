@@ -42,7 +42,7 @@ public class RegisterUser {
 	@Then("^the statuscode should be (\\d+)$")
 	public void getCreatedStatusCode(String statusCode) {
 		
-		assertEquals(Integer.parseInt(statusCode), response.getStatusCode());
+		assertEquals(Integer.parseInt(statusCode), ApiConstant.getStatusCode(response));
 		
 	}
 	
