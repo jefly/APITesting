@@ -49,9 +49,7 @@ public class RegisterUser {
 	@And("^the response should contain the user details$")
 	public void verifyTheRegistration(DataTable dataTable) {
 
-		Map<String, String> ab = response.as(new TypeRef<Map<String, String>>(){});
-		
-		Set<String> keySet = ab.keySet();
+ 		Set<String> keySet = ApiConstant.getReturnedJsonKeys(response);
 		
 		for(String key : keySet) {
 			if(key.equals(ApiConstant.JSON_RETURN))

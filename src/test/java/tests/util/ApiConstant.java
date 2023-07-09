@@ -4,12 +4,15 @@ import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
 import java.util.Map;
+import java.util.Set;
 
 import org.json.JSONObject;
 
 import io.cucumber.datatable.DataTable;
 import io.restassured.RestAssured;
+import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 
 public interface ApiConstant {
@@ -28,25 +31,30 @@ public interface ApiConstant {
 		return baseURI;
 	}
 	
+	private static RequestSpecification getRequest() {
+		return given().when();
+	}
+	
 	static Response getResponseWithEndPoint(RequestEnums enumType, JSONObject jsonObject, String endPoint) {
 		
 		getBaseURI();
+		RequestSpecification request = getRequest();
 		
 		if(enumType == RequestEnums.GET) {
 			
-			return  given().when().get(endPoint);
+			return  request.get(endPoint);
 			
 		} else if(enumType == RequestEnums.POST) {
 			
-			return  given().when().body(jsonObject).post(endPoint);
+			return  request.body(jsonObject).post(endPoint);
 			
 		} else if(enumType == RequestEnums.PUT) {
 			
-			return  given().when().body(jsonObject).put(endPoint);
+			return  request.body(jsonObject).put(endPoint);
 			
 		} else if(enumType == RequestEnums.PATCH) {
 			
-			return  given().when().body(jsonObject).patch(endPoint);
+			return  request.body(jsonObject).patch(endPoint);
 			
 		} else {
 			
@@ -72,5 +80,9 @@ public interface ApiConstant {
 		return userData;
 	}
 	
-	
+	static Set<String> getReturnedJsonKeys(Response response){
+		
+		Map<String, String> returnedKeySet = response.as(new TypeRef<Map<String, String>>(){});
+		return returnedKeySet.keySet();
+	}
 }
