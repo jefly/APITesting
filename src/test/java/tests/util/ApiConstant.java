@@ -32,12 +32,12 @@ public interface ApiConstant {
 	}
 	
 	private static RequestSpecification getRequest() {
+		getBaseURI();
 		return given().when();
 	}
 	
 	static Response getResponseWithEndPoint(RequestEnums enumType, JSONObject jsonObject, String endPoint) {
 		
-		getBaseURI();
 		RequestSpecification request = getRequest();
 		
 		if(enumType == RequestEnums.GET) {
