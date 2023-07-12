@@ -1,4 +1,4 @@
-# APITesting (RestAssured, Cucumber, Java)
+# APITesting (RestAssured, Cucumber, Gherkin, Java)
 This GitHub repository contains a comprehensive automation framework for API testing using RestAssured, Cucumber, Java, and Selenium. It provides a structured approach for automating API testing scenarios.
 
 1. Download maven from `https://maven.apache.org/install.html`, copy the path to the bin folder and add it to the `'PATH'` variable under environment variables (user & system).
